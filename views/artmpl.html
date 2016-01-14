@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <script src="../js/template.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="UTF-8">
+      	mui.init();
+    </script>
+</head>
+<body>
+	<div id="content"></div>
+	<script id="artmpl" type="text/html">
+		<ul>
+			{{each data as value}}
+				<li>{{value.name}}</li>
+			{{/each}}
+		</ul>
+	</script>
+	<script>
+		var data = [{
+			name:"徐龙",
+			sex:"男"
+		},{
+			name:"张琦",
+			sex:"女"
+		}];
+		var html = template("artmpl",data);
+		document.getElementById("content").innerHTML = html;
+	</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <script src="../js/template.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="UTF-8">
+      	mui.init();
+      	window.onload = function(){
+      		mui.plusReady(function(){
+	      		var userId = plus.storage.getItem("userId");
+	      		var self = plus.webview.currentWebview();
+	      		var topicId = self.topicId;
+	      		var isFloor = self.isFloor;
+	      		alert("userId:"+userId+",topicId:"+topicId+",isFloor:"+isFloor);
+	      		mui.ajax("http://localhost:8080/app/topic/topicList.json",
+	      		{
+					data:{
+						topicId:topicId,
+  						isFloor:isFloor
+					},
+					dataType:"json",
+					type:"post",
+					success:function(data){
+						var html = template("data",data);
+						document.getElementById("mui-content").innerHTML = html;
+						mui("#list").on("tap",".class-div",function(){
+				      		var id = this.getAttribute("id");
+				      		
+				      	});
+						//关闭等待框
+					    plus.nativeUI.closeWaiting();
+					    //显示当前页面
+					    mui.currentWebview.show();
+					}
+				});
+
+      		});
+      	};
+      	
+//无效    	mui("ul").on("tap","li",function(){
+//    		alert("test");
+//    	});
+    </script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title">主页</h1>
+	</header>
+	<div class="mui-content" id="mui-content">
+	</div>
+	<script type="text/html" id="data">
+		<h1>用户k:{{k}}</h1>
+		<div id="list">
+			{{each replyList as reply}}
+			<div>
+				<div>{{reply.floor}}<div>
+				<div><img src={{reply.avatarPath}} /></div>
+				<div class="class-div" id={{reply.id}}>{{reply.nickName}}</div>
+				<div>{{reply.content}}</div>
+			</div>
+			{{/each}}
+			</div>
+	</script>
+</body>
+</html>
