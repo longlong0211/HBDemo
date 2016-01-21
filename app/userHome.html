@@ -8,6 +8,10 @@
     <link href="../css/mui.min.css" rel="stylesheet"/>
 </head>
 <body>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title">用户首页</h1>
+	</header>
 	<div class="mui-content">
 	    用户首页内容
 	</div>
@@ -15,7 +19,10 @@
  <script type="text/javascript" charset="UTF-8">
       	mui.init();
       	mui.plusReady(function(){
-      		var status = plus.storage.getItem("status");
       	});
+      	window.addEventListener('userHome',function(event){
+      		var status = plus.storage.getItem("status");
+      		alert("plus"+plus+"status"+status);
+		});
     </script>
 </html>
