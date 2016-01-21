@@ -20,22 +20,38 @@
 
 	<body>
 		<header class="mui-bar mui-bar-nav">
-		    <a class="mui-action-back mui-icon mui-icon-back mui-pull-left"></a>
 		    <h1 class="mui-title">状态选择</h1>
 		</header>
 		<div class="mui-content">
 		    <div class="mui-content-padded" style="margin-top: 25%;">
-		        <button type="button" class="mui-btn mui-btn-primary mui-btn-block">备孕</button>
-		        <button type="button" class="mui-btn mui-btn-success mui-btn-block">治疗</button>
-		        <button type="button" class="mui-btn mui-btn-warning mui-btn-block">试管婴儿</button>
-				<button type="button" class="mui-btn mui-btn-royal mui-btn-block">怀孕啦</button>
+		        <button id="1" class="btn mui-btn mui-btn-primary mui-btn-block">备孕</button>
+		        <button id="2" class="btn mui-btn mui-btn-success mui-btn-block">治疗</button>
+		        <button id="3" class="btn mui-btn mui-btn-warning mui-btn-block">试管婴儿</button>
+				<button id="4" class="btn mui-btn mui-btn-royal mui-btn-block">怀孕啦</button>
 		    </div>
 		</div>
 	</body>
 	<script src="../js/mui.min.js"></script>
 	<script>
-		mui.init({
-			swipeBack:true //启用右滑关闭功能
-		});
+		(function($) {
+			$.init();
+			var btns = $('.btn');
+			btns.each(function(i, btn) {
+				btn.addEventListener('tap', function() {
+					var id = this.getAttribute('id');
+					plus.storage.setItem("status",id);
+					$.openWindow({
+						url:"home.html",
+						id:"home",
+						show:{
+								aniShow:'none'
+							},
+						waiting:{
+							autoShow:false
+						}
+					});
+				},false);
+			});	
+		})(mui);
 	</script>
 </html>

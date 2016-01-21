@@ -8,9 +8,18 @@
     <link href="../css/mui.min.css" rel="stylesheet"/>
     <script type="text/javascript" charset="UTF-8">
       	mui.init();
+      	mui.plusReady(function(){
+      		var status = plus.storage.getItem("status");
+      		alert(status);
+      	});
     </script>
 </head>
 <body>
-	
+	<header class="mui-bar mui-bar-nav">
+	    <h1 class="mui-title">首页</h1>
+	</header>
+	<div class="mui-content">
+	    主页内容
+	</div>
 </body>
 </html>
