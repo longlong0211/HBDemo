@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<!--App自定义的css-->
+		<link rel="stylesheet" type="text/css" href="../css/app.css"/>
+		<style>
+			.mui-content-padded{
+			  	margin: 10px;
+			  }
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-back mui-pull-left"></a>
+		    <h1 class="mui-title">状态选择</h1>
+		</header>
+		<div class="mui-content">
+		    <div class="mui-content-padded" style="margin-top: 25%;">
+		        <button type="button" class="mui-btn mui-btn-primary mui-btn-block">备孕</button>
+		        <button type="button" class="mui-btn mui-btn-success mui-btn-block">治疗</button>
+		        <button type="button" class="mui-btn mui-btn-warning mui-btn-block">试管婴儿</button>
+				<button type="button" class="mui-btn mui-btn-royal mui-btn-block">怀孕啦</button>
+		    </div>
+		</div>
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script>
+		mui.init({
+			swipeBack:true //启用右滑关闭功能
+		});
+	</script>
+</html>

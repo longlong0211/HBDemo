@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="UTF-8">
+      	mui.init();
+      	mui.plusReady(function(){
+      		var showGuide = plus.storage.getItem("showGuide");
+      		if(showGuide){
+      			plus.navigator.closeSplashscreen();
+				plus.navigator.setFullscreen(false);
+				var status = plus.storage.getItem("status");
+				if(status==1){//备孕
+					
+				}else if(status==2){//治疗
+					
+				}else if(status==3){//试管婴儿
+					
+				}else if(status==4){//怀孕啦
+					
+				}else {//默认选择用户状态
+					mui.openWindow({
+						url:"userState.html",
+						id:"userState",
+						show:{
+							aniShow:"none"
+						},
+						waiting:{
+							autoShow:false
+						}
+					});
+				}
+      		}else {
+      			mui.openWindow({
+      				url:"guide.html",
+      				id:"guide",
+      				show:{
+							aniShow:'none'
+						},
+					waiting:{
+						autoShow:false
+					}
+      			});
+
+      		}
+      	});
+    </script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-back mui-pull-left"></a>
+	    <h1 class="mui-title">状态选择</h1>
+	</header>
+	<div class="mui-content">
+	    <div class="mui-content-padded" style="margin-top: 25%;">
+	        <button type="button" class="mui-btn mui-btn-primary mui-btn-block">备孕</button>
+	        <button type="button" class="mui-btn mui-btn-success mui-btn-block">治疗</button>
+	        <button type="button" class="mui-btn mui-btn-warning mui-btn-block">试管婴儿</button>
+			<button type="button" class="mui-btn mui-btn-royal mui-btn-block">怀孕啦</button>
+	    </div>
+	</div>
+</body>
+</html>
