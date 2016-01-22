@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link href="../../css/mui.min.css" rel="stylesheet"/>
+    <link href="../../css/mui.picker.css" rel="stylesheet" />
+	<link href="../../css/mui.poppicker.css" rel="stylesheet" />
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title">备孕</h1>
+	</header>
+	<div class="mui-content">
+	    <div class="mui-content-padded" style="margin-top: 30%;">
+	   	 	<input type="hidden" id="periodStart" />
+			<input type="hidden" id="periodDay" />
+			<input type="hidden" id="periodWeek"/>
+			<button id='pickDateBtn' type="button" class="mui-btn mui-btn-block">上一次经期开始时间</button>
+			<button id='showCityPicker' class="mui-btn mui-btn-block" type='button'>经期周期</button>
+			<button id="saveButton" type="button" class="mui-btn mui-btn-primary mui-btn-block">开启备孕旅程</button>
+		</div>
+	</div>
+</body>
+    <script src="../../js/mui.min.js"></script>
+    <script src="../../js/mui.picker.js"></script>
+	<script src="../../js/mui.poppicker.js"></script>
+	<script>
+		var info = document.getElementById("pickDateBtn");
+		document.getElementById("pickDateBtn").addEventListener('tap', function() {
+			var dDate = new Date();
+			dDate.setFullYear(2014, 7, 16);
+			var minDate = new Date();
+			minDate.setFullYear(2010, 0, 1);
+			var maxDate = new Date();
+			maxDate.setFullYear(2016, 11, 31);
+			plus.nativeUI.pickDate(function(e) {
+				var d = e.date;
+				document.getElementById("periodStart").value = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+				info.innerText = '上一次经期开始时间:' + d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+			}, function(e) {
+				info.innerText = "您没有选择日期";
+			}, {
+				title: "请选择日期",
+				date: dDate,
+				minDate: minDate,
+				maxDate: maxDate
+			});
+		});
+	
+		(function($, doc) {
+			$.init({
+				swipeBack: true //启用右滑关闭功能
+			});
+			$.ready(function() {
+				var showCityPickerButton = doc.getElementById('showCityPicker');
+				var cityResult = doc.getElementById('showCityPicker');
+				var cityPicker = new $.PopPicker({layer: 2});
+				var cityData = [{
+					value: '4',
+					text: '经期4天',
+					children:[{
+						value: "25",
+						text: '周期25天',
+					},{
+						value: "26",
+						text: '周期26天',
+					},{
+						value: "27",
+						text: '周期27天',
+					},{
+						value: "28",
+						text: '周期28天',
+					},{
+						value: "29",
+						text: '周期29天',
+					},{
+						value: "30",
+						text: '周期30天',
+					}]
+				},{
+					value: '5',
+					text: '经期5天',
+					children:[{
+						value: "25",
+						text: '周期25天',
+					},{
+						value: "26",
+						text: '周期26天',
+					},{
+						value: "27",
+						text: '周期27天',
+					},{
+						value: "28",
+						text: '周期28天',
+					},{
+						value: "29",
+						text: '周期29天',
+					},{
+						value: "30",
+						text: '周期30天',
+					}]
+				},{
+					value: '6',
+					text: '经期6天',
+					children:[{
+						value: "25",
+						text: '周期25天',
+					},{
+						value: "26",
+						text: '周期26天',
+					},{
+						value: "27",
+						text: '周期27天',
+					},{
+						value: "28",
+						text: '周期28天',
+					},{
+						value: "29",
+						text: '周期29天',
+					},{
+						value: "30",
+						text: '周期30天',
+					}]
+				},{
+					value: '7',
+					text: '经期7天',
+					children:[{
+						value: "25",
+						text: '周期25天',
+					},{
+						value: "26",
+						text: '周期26天',
+					},{
+						value: "27",
+						text: '周期27天',
+					},{
+						value: "28",
+						text: '周期28天',
+					},{
+						value: "29",
+						text: '周期29天',
+					},{
+						value: "30",
+						text: '周期30天',
+					}]
+				}];
+				cityPicker.setData(cityData);
+				showCityPickerButton.addEventListener('tap', function(event) {
+					cityPicker.show(function(items) {
+						cityResult.innerText = "经期周期:" + items[0].text + " " + items[1].text;
+						document.getElementById("periodDay").value=items[0].value;
+						document.getElementById("periodWeek").value=items[1].value
+						//返回 false 可以阻止选择框的关闭
+						//return false;
+					});
+				}, false);
+				
+				//使用ajax进行异步后台传值
+				document.getElementById("saveButton").addEventListener("tap",function(){
+					var status = plus.storage.getItem("status");
+					var periodStart = document.getElementById("periodStart").value;
+					var periodDay = document.getElementById("periodDay").value;
+					var periodWeek = document.getElementById("periodWeek").value;
+					$.openWindow({
+						url:"../home.html",
+						id:"home",
+						show:{
+							aniShow:'none'
+						},
+						waiting:{
+							autoShow:false
+						}
+					});
+				})
+			});
+		})(mui, document);		
+	</script>
+</html>

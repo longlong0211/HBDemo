@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <h1 class="mui-title">首页</h1>
+	</header>
+	<div class="mui-content">
+	    主页内容
+	</div>
+</body>
+<script src="../js/mui.min.js"></script>
+<script type="text/javascript" charset="UTF-8">
+	mui.init({
+	    subpages:[{
+	      url:"footer.html",//子页面HTML地址，支持本地地址和网络地址
+	      id:"footer",//子页面标志
+	      styles:{
+	        top:"90.5%",//子页面顶部位置
+	        bottom:"0",//子页面底部位置
+	        zindex:"0"
+	      }
+	    }]
+	});
+    </script>
+</html>
