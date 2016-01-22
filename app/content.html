@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <h1 class="mui-title">状态选择</h1>
+	</header>
+	<div class="mui-content">
+	    <div class="mui-content-padded" style="margin-top: 25%;">
+	        <button id="1" class="btn mui-btn mui-btn-primary mui-btn-block">备孕</button>
+	        <button id="2" class="btn mui-btn mui-btn-success mui-btn-block">治疗</button>
+	        <button id="3" class="btn mui-btn mui-btn-warning mui-btn-block">试管婴儿</button>
+			<button id="4" class="btn mui-btn mui-btn-royal mui-btn-block">怀孕啦</button>
+	    </div>
+	</div>
+</body>
+<script src="../js/mui.min.js"></script>
+<script type="text/javascript" charset="UTF-8">
+	mui.init({
+	    subpages:[{
+	      url:"foot.html",//子页面HTML地址，支持本地地址和网络地址
+	      id:"foot",//子页面标志
+	      styles:{
+	        top:"90.5%",//子页面顶部位置
+	        bottom:"0",//子页面底部位置
+	        zindex:'0'
+	      }
+	    }]
+	});
+    </script>
+</html>
