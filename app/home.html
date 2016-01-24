@@ -1,28 +1,19 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Hello MUI</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-		<link rel="stylesheet" href="../css/mui.min.css">
-		<style>
-			html,
-			body {
-				background-color: #efeff4;
-			}
-		</style>
-	</head>
-	<body>
-		<header class="mui-bar mui-bar-nav">
-			<h1 id="title" class="mui-title">首页</h1>
-		</header>
-		<div class="mui-content" id="mui-content">
-			test
-		</div>
-		<nav class="mui-bar mui-bar-tab">
-			<a class="mui-tab-item mui-active">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title">首页</h1>
+	</header>
+	<nav class="mui-bar mui-bar-tab">
+			<a id="main" class="mui-tab-item mui-active" href="main.html">
 				<span class="mui-icon mui-icon-home"></span>
 				<span class="mui-tab-label">首页</span>
 			</a>
@@ -35,37 +26,53 @@
 				<span class="mui-tab-label">我的</span>
 			</a>
 		</nav>
-	<script src="../js/mui.min.js"></script>
-	<script type="text/javascript" charset="UTF-8">
-      	mui.plusReady(function(){
-      		var status = plus.storage.getItem("status");
-      	});
-      	mui.init({
-		  preloadPages:[{
-		  		id:"topic",
-		  		url:"topic.html"
-		  },{
-		  		id:"my",
-		  		url:"my.html"
-		  }
-		  ]
-		});
-		var detailPage = null;
-		mui(".mui-bar").on("tap","a",function(e){
-			var id=this.getAttribute("id");
-			if(!detailPage){
-			    detailPage = plus.webview.getWebviewById(id);
+</body>
+<script type="text/javascript" charset="utf-8">
+	mui.plusReady(function(){
+		var status = plus.storage.getItem("status");
+	});
+	mui.init({
+	  preloadPages:[{
+	    		id:"main",
+	    		url:"main.html",
+	    		styles:{
+				top: '45px',
+				bottom: '51px'
 			}
-			if(id=="my"){
-				mui.fire(detailPage,'my',{});
-			}else if(id=="topic"){
-				mui.fire(detailPage,'topic',{});
+	  },{
+	  		id:"topic",
+	  		url:"topic.html",
+	  		styles:{
+				top: '45px',
+				bottom: '51px'
 			}
-			mui.openWindow({
-			    id:id
-			});
+	  },{
+	  		id:"my",
+	  		url:"my.html",
+	  		styles:{
+				top: '45px',
+				bottom: '51px'
+			}
+	  }]
+	});
+			
+	var detailPage = null;
+	mui(".mui-bar").on("tap","a",function(e){
+		var id=this.getAttribute("id");
+		if(!detailPage){
+		    detailPage = plus.webview.getWebviewById(id);
+		}
+		alert("id:"+id);
+		if(id=="main"){
+			mui.fire(detailPage,'main',{});
+		}else if(id=="my"){
+			mui.fire(detailPage,'my',{});
+		}else if(id=="topic"){
+			mui.fire(detailPage,'topic',{});
+		}
+		mui.openWindow({
+		    id:id
 		});
-    	</script>
-	</body>
-
+	});
+</script>
 </html>
