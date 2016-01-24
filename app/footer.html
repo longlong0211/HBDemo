@@ -13,7 +13,7 @@
 	    <h1 class="mui-title">首页</h1>
 	</header>-->
 	<nav class="mui-bar mui-bar-tab">
-			<a id="userHome" class="mui-tab-item mui-active" href="userHome.html">
+			<a id="main" class="mui-tab-item mui-active" href="main.html">
 				<span class="mui-icon mui-icon-home"></span>
 				<span class="mui-tab-label">首页</span>
 			</a>
@@ -27,7 +27,41 @@
 			</a>
 		</nav>
 </body>
- <script type="text/javascript" charset="UTF-8">
-	mui.init();
- </script>
+<script type="text/javascript" charset="utf-8">
+	mui.plusReady(function(){
+		var status = plus.storage.getItem("status");
+	});
+	mui.init({
+	  preloadPages:[{
+	    		id:"main",
+	    		url:"main.html"           
+	  },{
+	  		id:"topic",
+	  		url:"topic.html"
+	  },{
+	  		id:"my",
+	  		url:"my.html"
+	  }
+	  ]
+	});
+			
+	var detailPage = null;
+	mui(".mui-bar").on("tap","a",function(e){
+		var id=this.getAttribute("id");
+		if(!detailPage){
+		    detailPage = plus.webview.getWebviewById(id);
+		}
+		if(id=="main"){
+			mui.fire(detailPage,'main',{});
+		}else 
+		if(id=="my"){
+			mui.fire(detailPage,'my',{});
+		}else if(id=="topic"){
+			mui.fire(detailPage,'topic',{});
+		}
+		mui.openWindow({
+		    id:id
+		});
+	});
+</script>
 </html>

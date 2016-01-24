@@ -19,9 +19,10 @@
 			<h1 id="title" class="mui-title">首页</h1>
 		</header>
 		<div class="mui-content" id="mui-content">
+			test
 		</div>
 		<nav class="mui-bar mui-bar-tab">
-			<a id="home" class="mui-tab-item mui-active" href="home.html">
+			<a class="mui-tab-item mui-active">
 				<span class="mui-icon mui-icon-home"></span>
 				<span class="mui-tab-label">首页</span>
 			</a>
@@ -34,55 +35,37 @@
 				<span class="mui-tab-label">我的</span>
 			</a>
 		</nav>
-		<script src="../js/mui.min.js"></script>
-		<!--<script type="text/javascript" charset="utf-8">
-			mui.plusReady(function(){
-				var status = plus.storage.getItem("status");
+	<script src="../js/mui.min.js"></script>
+	<script type="text/javascript" charset="UTF-8">
+      	mui.plusReady(function(){
+      		var status = plus.storage.getItem("status");
+      	});
+      	mui.init({
+		  preloadPages:[{
+		  		id:"topic",
+		  		url:"topic.html"
+		  },{
+		  		id:"my",
+		  		url:"my.html"
+		  }
+		  ]
+		});
+		var detailPage = null;
+		mui(".mui-bar").on("tap","a",function(e){
+			var id=this.getAttribute("id");
+			if(!detailPage){
+			    detailPage = plus.webview.getWebviewById(id);
+			}
+			if(id=="my"){
+				mui.fire(detailPage,'my',{});
+			}else if(id=="topic"){
+				mui.fire(detailPage,'topic',{});
+			}
+			mui.openWindow({
+			    id:id
 			});
-			mui.init({
-			  preloadPages:[{
-			    		id:"home",
-			    		url:"home.html"           
-			  },{
-			  		id:"topic",
-			  		url:"topic.html"
-			  },{
-			  		id:"my",
-			  		url:"my.html"
-			  }
-			  ]
-			});
-			
-			var detailPage = null;
-			mui(".mui-bar").on("tap","a",function(e){
-				var id=this.getAttribute("id");
-				if(!detailPage){
-				    detailPage = plus.webview.getWebviewById(id);
-				}
-				if(id=="my"){
-					mui.fire(detailPage,'my',{});
-				}else if(id=="topic"){
-					mui.fire(detailPage,'topic',{});
-				}else{
-					//mui.fire(detailPage,'userHome',{});
-				}
-				
-				mui.openWindow({
-				    id:id
-				});
-			});
-		</script>-->
-		<script type="text/javascript" charset="UTF-8">
-	      	mui.init();
-	      	mui.plusReady(function(){
-	      		//var status = plus.storage.getItem("status");
-	      		//document.getElementById("mui-content").innerHTML=status;
-	      	});
-	      	window.addEventListener('home',function(event){
-	      		var status = plus.storage.getItem("status");
-	      		document.getElementById("mui-content").innerHTML=status;
-			});
-    		</script>
+		});
+    	</script>
 	</body>
 
 </html>
