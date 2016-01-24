@@ -1,31 +1,88 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <title></title>
-    <link href="../css/mui.min.css" rel="stylesheet"/>
-</head>
-<body>
-	<header class="mui-bar mui-bar-nav">
-	    <h1 class="mui-title">首页</h1>
-	</header>
-	<div class="mui-content">
-	    主页内容
-	</div>
-</body>
-<script src="../js/mui.min.js"></script>
-<script type="text/javascript" charset="UTF-8">
-	mui.init({
-	    subpages:[{
-	      url:"footer.html",//子页面HTML地址，支持本地地址和网络地址
-	      id:"footer",//子页面标志
-	      styles:{
-	        top:"90.5%",//子页面顶部位置
-	        bottom:"0",//子页面底部位置
-	        zindex:"0"
-	      }
-	    }]
-	});
-    </script>
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<h1 id="title" class="mui-title">首页</h1>
+		</header>
+		<div class="mui-content" id="mui-content">
+		</div>
+		<nav class="mui-bar mui-bar-tab">
+			<a id="home" class="mui-tab-item mui-active" href="home.html">
+				<span class="mui-icon mui-icon-home"></span>
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<a id="topic" class="mui-tab-item" href="topic.html">
+				<span class="mui-icon mui-icon-email"><span class="mui-badge">9</span></span>
+				<span class="mui-tab-label">圈子</span>
+			</a>
+			<a id="my" class="mui-tab-item" href="my.html">
+				<span class="mui-icon mui-icon-gear"></span>
+				<span class="mui-tab-label">我的</span>
+			</a>
+		</nav>
+		<script src="../js/mui.min.js"></script>
+		<!--<script type="text/javascript" charset="utf-8">
+			mui.plusReady(function(){
+				var status = plus.storage.getItem("status");
+			});
+			mui.init({
+			  preloadPages:[{
+			    		id:"home",
+			    		url:"home.html"           
+			  },{
+			  		id:"topic",
+			  		url:"topic.html"
+			  },{
+			  		id:"my",
+			  		url:"my.html"
+			  }
+			  ]
+			});
+			
+			var detailPage = null;
+			mui(".mui-bar").on("tap","a",function(e){
+				var id=this.getAttribute("id");
+				if(!detailPage){
+				    detailPage = plus.webview.getWebviewById(id);
+				}
+				if(id=="my"){
+					mui.fire(detailPage,'my',{});
+				}else if(id=="topic"){
+					mui.fire(detailPage,'topic',{});
+				}else{
+					//mui.fire(detailPage,'userHome',{});
+				}
+				
+				mui.openWindow({
+				    id:id
+				});
+			});
+		</script>-->
+		<script type="text/javascript" charset="UTF-8">
+	      	mui.init();
+	      	mui.plusReady(function(){
+	      		//var status = plus.storage.getItem("status");
+	      		//document.getElementById("mui-content").innerHTML=status;
+	      	});
+	      	window.addEventListener('home',function(event){
+	      		var status = plus.storage.getItem("status");
+	      		document.getElementById("mui-content").innerHTML=status;
+			});
+    		</script>
+	</body>
+
 </html>

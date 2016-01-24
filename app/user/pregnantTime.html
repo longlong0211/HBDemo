@@ -54,6 +54,15 @@
 			$.init({
 				swipeBack: true //启用右滑关闭功能
 			});
+			
+			var homePage;
+			mui.plusReady(function(){
+				homePage = mui.preload({
+				    url:"../home.html",
+				    id:"home"//默认使用当前页面的url作为id
+				});	
+			});
+			
 			$.ready(function() {
 				var showCityPickerButton = doc.getElementById('showCityPicker');
 				var cityResult = doc.getElementById('showCityPicker');
@@ -164,15 +173,9 @@
 					var periodStart = document.getElementById("periodStart").value;
 					var periodDay = document.getElementById("periodDay").value;
 					var periodWeek = document.getElementById("periodWeek").value;
-					$.openWindow({
-						url:"../home.html",
-						id:"home",
-						show:{
-							aniShow:'none'
-						},
-						waiting:{
-							autoShow:false
-						}
+					mui.fire(homePage,'home',{});
+					mui.openWindow({
+					    id:"home"
 					});
 				})
 			});
