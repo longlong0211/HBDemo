@@ -47,6 +47,7 @@
 				var detailPage = null;
 				mui(".mui-bar").on("tap","a",function(e){
 					var id=this.getAttribute("id");
+					alert(id);
 					if(id=="main"){
 						document.getElementById("title").innerHTML="首页";
 					}else if(id=="topic"){
@@ -54,7 +55,7 @@
 					}else {
 						document.getElementById("title").innerHTML="我的";
 					}
-					plus.webview.close(id);
+					//plus.webview.close(id);
 					mui.openWindow({
 						id:id,
 						url:id+".html",
